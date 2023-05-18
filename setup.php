@@ -58,6 +58,7 @@ class Setup
             'CREATE TABLE IF NOT EXISTS access_log ( 
                 id INT AUTO_INCREMENT,
                 ip VARCHAR(100) NOT NULL, 
+                url VARCHAR(100) NOT NULL, 
                 query_params TEXT NOT NULL, 
                 server_params TEXT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

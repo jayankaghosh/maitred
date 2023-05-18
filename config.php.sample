@@ -15,4 +15,5 @@ return [
         'database' => 'maitred',
     ],
     'serve_all' => true,
+    'admin_token' => '667ff118ef6d196c96313aeaee7da519'
 ];

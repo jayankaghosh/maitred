@@ -58,10 +58,11 @@ class Maitred
         exit(0);
     }
 
-    protected function track()
+    protected function track($url)
     {
         $data = [
             'ip' => $this->serverParams['REMOTE_ADDR'] ?? '',
+            'url' => $url,
             'query_params' => \json_encode($_GET),
             'server_params' => \json_encode($_SERVER)
         ];
@@ -93,7 +94,7 @@ class Maitred
             }
 
             if ($track) {
-                $this->track();
+                $this->track($urlPath);
             }
             $this->serveFile($requestedFilePath, $urlPath, $responseCode);
         } catch (\Exception $exception) {
