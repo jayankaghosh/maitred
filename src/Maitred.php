@@ -23,7 +23,7 @@ class Maitred
 
     protected function getUrlPath(): string
     {
-        return trim($this->serverParams['DOCUMENT_URI'] ?? '', '/');
+        return trim(strtok($this->serverParams['REQUEST_URI'] ?? '', '?'), '/');
     }
 
     protected function getRequestedFilePath($filename): ?string
