@@ -1,14 +1,18 @@
 <?php
 
-return array (
-  'file_map' =>
-  array (),
-  'db' =>
-  array (
-    'hostname' => '127.0.0.1',
-    'username' => 'root',
-    'password' => 'root',
-    'database' => 'maitred',
-  ),
-  'serve_all' => true,
-);
+return [
+    'file_map' => [
+        'webhook' => [
+            'response_code' => 200,
+            'file' => 'webhook.php',
+            'track' => true
+        ]
+    ],
+    'db' => [
+        'hostname' => '127.0.0.1',
+        'username' => 'root',
+        'password' => 'root',
+        'database' => 'maitred',
+    ],
+    'serve_all' => true,
+];

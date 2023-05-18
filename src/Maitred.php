@@ -37,13 +37,18 @@ class Maitred
 
     protected function serveFile($path, $name, $responseCode): void
     {
-        header('Content-type: ' . mime_content_type($path));
-        header('Content-Disposition: filename=' . basename($name));
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        http_response_code($responseCode);
-        readfile($path);
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        if ($extension === 'php') {
+            require_once $path;
+        } else {
+            header('Content-type: ' . mime_content_type($path));
+            header('Content-Disposition: filename=' . basename($name));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            http_response_code($responseCode);
+            readfile($path);
+        }
         exit(0);
     }
 
@@ -70,7 +75,6 @@ class Maitred
             $fileMap = $this->config['file_map'] ?? [];
 
             $urlPath = $this->getUrlPath();
-            $fileName = null;
             $responseCode = 200;
             $track = false;
             if (isset($fileMap[$urlPath])) {
